@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/8vd3uawyirghjsm9?svg=true)](https://ci.appveyor.com/project/Evgenia-Vl/cardapplication)
+
 Домашнее задание к занятию «2.1. Тестирование веб-интерфейсов»
 В качестве результата пришлите ссылку на ваш GitHub-проект в личном кабинете студента на сайте netology.ru.
 
