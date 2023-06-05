@@ -3,7 +3,7 @@ package ru.netology;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -72,7 +72,7 @@ public class CardApplicationTest {
         SelenideElement form = $(".form");
         open("http://localhost:9999/");
         form.$("[data-test-id=name] input").setValue("Мухин Пётр");
-        form.$("[data-test-id=phone] input").setValue("+79544568754");
+        form.$("[data-test-id=phone] input").setValue("");
         form.$("[data-test-id=agreement]").click();
         form.$("button").click();
         $("[data-test-id=order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
@@ -123,6 +123,19 @@ public class CardApplicationTest {
         form.$("[data-test-id=agreement]").click();
         form.$("button").click();
         $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+
+    }
+
+    @Test
+    void shouldBeMessageAboutMistakeIfСheckboxIsNotSelected(){
+        SelenideElement form = $(".form");
+        open("http://localhost:9999/");
+        form.$("[data-test-id=name] input").setValue("Мошина Ксения");
+        form.$("[data-test-id=phone] input").setValue("+79544568754");
+        form.$("button").click();
+        form.$("[data-test-id=agreement]").should(
+                cssClass("input_invalid")
+        );
 
     }
 }
